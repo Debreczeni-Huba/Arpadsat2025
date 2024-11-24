@@ -5,12 +5,11 @@
     font-family:sans-serif;
 }
 
-.background {
-    background-image: url('./Desktop-Dark-Blue-Wallpapers.png');
-    background-size: cover;
-    position:absolute;
-    width: 100%;
-    min-height: 100vh;
+background {
+    position:fixed;
+    display:flex;
+    min-width: 100%;
+    min-height: 100%;
     left: 0px;
     top: 0px;
     z-index: -100;
@@ -57,8 +56,6 @@ body {
     top: -40px;
 }
 
-@supports (backdrop-filter: blur(20px)) {.header {backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);}}
-@supports not (backdrop-filter: blur(20px)) {.header {filter: url(#blur-filter);}}
 header {
     position:fixed;
     top: 0;
@@ -73,12 +70,11 @@ header {
     margin-bottom: 20px;
     background:transparent;
     background-color: rgba(0, 0, 0, .5);
+    backdrop-filter: blur(20px);
     transition: all .5s;
     box-shadow: 0 0 30px rgba(100, 100, 100, .8);
 }
 
-@supports (backdrop-filter: blur(20px)) {.header2 {backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);}}
-@supports not (backdrop-filter: blur(20px)) {.header2 {filter: url(#blur-filter);}}
 .header2 {
     background:transparent;
     background-color: rgba(0, 0, 0, .5);
@@ -105,7 +101,6 @@ header {
     position: absolute;
     left: 20px;
 }
-.navelem2 {display: flex;}
 
 .navetext {
     left: 40px;
@@ -130,10 +125,10 @@ header {
 
 header nav {
     transition: all .5s;
-    display:flex;
+    display:block;
 }
 
-@media only screen and (max-width: 1540px) {
+@media only screen and (max-width: 1240px) {
     header nav {
         display: none;
     }
@@ -187,7 +182,7 @@ header nav {
 }
 
 
-.about {
+about {
     position: absolute;
     display: flex;
     top: 140px;
@@ -209,7 +204,7 @@ header nav {
 
 }
 
-@media only screen and (max-width: 600px) {.about {margin: 0px;}}
+@media only screen and (max-width: 600px) {about {margin: 0px;}}
 
 
 .title {
@@ -244,11 +239,16 @@ header nav {
     justify-content: center;
     align-items: center;
     transition: .5s;
-    text-align: center;
 }
 
 .about-content h2 {text-align: center;}
 .about-content h3 {text-align:justify;}
+
+.about-content:hover {
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(100, 100, 100, .7);
+    background-color: rgba(10, 10, 10, .7);
+}
 
 .docs-content {
     position: relative;
@@ -269,6 +269,11 @@ header nav {
 .docs-content h2 {text-align: center;}
 .docs-content h3 {text-align:left; max-width: 80%;}
 
+.docs-content:hover {
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(100, 100, 100, .7);
+    background-color: rgba(10, 10, 10, .7);
+}
 .dw-button {
     background: transparent;
     background-color: rgba(0, 160, 20, .3);
@@ -279,21 +284,17 @@ header nav {
     border: none;
     transition: .5s;
     font-size: 2em;
-    padding-left: 5px;
 }
 .dw-button:hover {
     background-color: rgba(0, 160, 20);
     color: black;
-    box-shadow: 0 0 30px rgba(100, 100, 100, .7);
 }
 
 .youtube{max-width: 1400px;}
 
 .about-intro {
-    width: 100%;
+    min-width: 100%;
 }
-
-@media only screen and (max-width: 1000px) {.about-intro{min-width: 100%;}}
 
 .about-intro h2 {
     margin-bottom: 10px;
@@ -310,7 +311,7 @@ header nav {
 .index-content {flex-direction: column;}
 .index-content h3 {margin-bottom: 10px;}
 
-.docs {
+docs {
     position: absolute;
     display: flex;
     top: 140px;
@@ -329,6 +330,10 @@ header nav {
     transition: .5s;
     margin: 10px;
 
+}
+
+docs:hover {
+    background-color:rgba(0, 0, 0, .7);
 }
 
 .calendar {
@@ -358,6 +363,10 @@ header nav {
     .calendar {left: -10px; justify-content: left;}
 }
 
+.calendar:hover {
+    background-color:rgba(0, 0, 0, .7);
+}
+
 .docs button {
     width: 100px;
     height: 40px;
@@ -367,141 +376,3 @@ header nav {
     justify-content:left;
     margin-top: 0px;
 }
-
-@supports (backdrop-filter: blur(20px)) {.window {backdrop-filter: blur(20px);-webkit-backdrop-filter: blur(20px);}}
-@supports not (backdrop-filter: blur(20px)) {.window {filter: url(#blur-filter);}}
-.window {
-    position:fixed;
-    width: 90%;
-    max-width: 1000px;
-    max-height: 85%;
-    top:120px;
-    background:transparent;
-    background-color: rgba(40, 40, 40, .5);
-    border: 2px solid rgba(100, 100, 100, .7);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(100, 100, 100, .5);
-    display:flex;
-    flex-direction: column;
-    justify-content:flex-start;
-    align-items:flex-start;
-    overflow:hidden;
-    transition: transform .5s ease, height .5s ease;
-    z-index: 97;
-    color: white;
-}
-.window h3 {
-    margin: 15px;
-    color: #6bbfff;
-}
-.window p {margin:15px; color: #6bbfff;}
-
-.gb {transform: scale(0);}
-.hb {transform: scale(0);}
-.mb {transform: scale(0);}
-.db {transform: scale(0);}
-.zsb {transform: scale(0);}
-.bb {transform: scale(0);}
-
-.gb.active-popup {transform: scale(1);}
-.hb.active-popup {transform: scale(1);}
-.mb.active-popup {transform: scale(1);}
-.db.active-popup {transform: scale(1);}
-.zsb.active-popup {transform: scale(1);}
-.bb.active-popup {transform: scale(1);}
-
-.window .icon-close {
-    position:fixed;
-    top: 0;
-    right: 0;
-    width: 45px;
-    height: 45px;
-    background: #640000;
-    font-size: 2em;
-    color: #fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-bottom-left-radius: 20px;
-    cursor:pointer;
-    z-index: 1;
-    transition: .5s;
-}
-
-.window .icon-close:hover {
-    background: #c00000;     
-    box-shadow: 0 0 30px rgba(100, 100, 100, .8);
-}
-
-.about-content .icon-text {
-    position:relative;
-    background: #162938;
-    font-size: 1em;
-    color: #fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius: 10px;
-    cursor:pointer;
-    border: none;
-    z-index: 1;
-    margin: 10px;
-    margin-bottom: 0px;
-    transition: .5s;
-    text-decoration: none;
-    padding: 10px;
-}
-.about-content .icon-open {
-    position:relative;
-    width: 45px;
-    height: 45px;
-    background: #162938;
-    font-size: 2em;
-    color: #fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius: 10px;
-    cursor:pointer;
-    border: none;
-    z-index: 1;
-    margin: 10px;
-    margin-bottom: 0px;
-    transition: .5s;
-    padding-left: 5px;
-}
-.icon-open:hover, .icon-text:hover {background: #00508d;     box-shadow: 0 0 30px rgba(100, 100, 100, .8)}
-
-.black {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    background: transparent;
-    background-color: rgba(0, 0, 0, .5);
-    backdrop-filter: blur(5px);
-    z-index: 96;
-    transform: scale(0);
-    opacity: 0%;
-    transition: opacity .5s;
-}
-.black.active{transform: scale(1); opacity: 100%; transition: opacity .5s;}
-
-ion-icon {padding-right: 5px;}
-
-.second-content {text-align: left;}
-
-.about-content .img43 {
-    position: relative;
-    display: flex;
-    max-width: 90%;
-}
-
-.csoportkep {max-width: 1000px;}
-
-@media only screen and (min-width: 1000px) {
-.window {
-    flex-direction: row;
-}
-}
-
-.text {display: flex; flex-direction: column; position: relative; overflow-y: auto;}
